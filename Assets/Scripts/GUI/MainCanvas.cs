@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using Artifacts;
 using Characters;
@@ -65,8 +66,19 @@ namespace Gui
         [Preserve]
         public void OnExportJsonButtonClicked()
         {
-            JsonWindow.JsonInputField.text = _apiEventReceiver.ExportData();
-            JsonWindow.gameObject.SetActive(true);
+            _apiEventReceiver.ExportData();
+        }
+        
+        [Preserve]
+        public void OnImportJsonButtonClicked()
+        {
+            _apiEventReceiver.ImportData();
+        }
+        
+        [Preserve]
+        public void OnCombineSameCompsToggleSwitched(bool isOn)
+        {
+            _apiEventReceiver.SetCombining(isOn);
         }
     }
 }

@@ -24,7 +24,7 @@ MonoBehaviour:
       starts. The lost HP will return to enemies in the next 20s.  Reach 6 Artifact
       XP to unlock. You can then select a new passive effect.  Reach 42 Artifact
       XP to unlock. Extends the interval of returning lost HP to 30s."
-    Icon: {fileID: 21300000, guid: c1a7c5ec5c992dc4c8572ffc2beeecee, type: 3}
+    Icon: {fileID: 21300000, guid: 5bc3f0b99826fae44b87924f3c31f9fa, type: 3}
   - Name: Obsidian Earring
     ArtifactType: 2
     Description: "Deals true damage to all enemies once every 12s. The damage equals
@@ -60,11 +60,11 @@ MonoBehaviour:
   - Name: Pure Nectar
     ArtifactType: 6
     Description: 
-    Icon: {fileID: 21300000, guid: c1a7c5ec5c992dc4c8572ffc2beeecee, type: 3}
+    Icon: {fileID: 21300000, guid: 7d72950d54fa6a64492239aef978b317, type: 3}
   - Name: Swifty Book
     ArtifactType: 7
     Description: 
-    Icon: {fileID: 21300000, guid: c1a7c5ec5c992dc4c8572ffc2beeecee, type: 3}
+    Icon: {fileID: 21300000, guid: cf839bd08ad9fea4c958f123aabb6d20, type: 3}
   - Name: Illusion Censer
     ArtifactType: 8
     Description: "Creates magic fog to cover the battlefield, reducing all the heroes\u2019
@@ -84,11 +84,11 @@ MonoBehaviour:
   - Name: Fragrant Bag
     ArtifactType: 10
     Description: 
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 00e3329f7b286b94395a78ed2e5135e8, type: 3}
   - Name: Crystal Cell
     ArtifactType: 11
     Description: 
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 7c06f47a59a485645a873886d608839e, type: 3}
   - Name: Oracle Sculpture
     ArtifactType: 12
     Description: 
@@ -96,15 +96,15 @@ MonoBehaviour:
   - Name: Lucky Cage
     ArtifactType: 13
     Description: 
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 2a334d149c4db4541b6bbc60210da3e4, type: 3}
   - Name: Relic Shard
     ArtifactType: 14
     Description: 
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 715cb358daa15044281fdbbed66e61dd, type: 3}
   - Name: Snow Herb
     ArtifactType: 15
     Description: 
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: ef29e55d4750c3142bb518af217ba618, type: 3}
   - Name: Dawn Antlers
     ArtifactType: 16
     Description: 
@@ -120,7 +120,7 @@ MonoBehaviour:
   - Name: Glowing Blossom
     ArtifactType: 19
     Description: 
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: ab14f5b5950f4594395853e73cd4a364, type: 3}
   - Name: Crystal Dew
     ArtifactType: 20
     Description: 
@@ -136,4 +136,16 @@ MonoBehaviour:
   - Name: Tranquil Flask
     ArtifactType: 23
     Description: 
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 6ad2ce435abc6ba4c944e4beca51e906, type: 3}
+  - Name: Breezer Rider
+    ArtifactType: 24
+    Description: 
+    Icon: {fileID: 21300000, guid: 6b11dd2c0cb2fdf4da78c3cc7bd9fc6f, type: 3}
+  - Name: Pale Crown
+    ArtifactType: 25
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c5925205de4de945b69677f597df5fc, type: 3}
+  - Name: Bone Scroll
+    ArtifactType: 26
+    Description: 
+    Icon: {fileID: 21300000, guid: db89d53c7fc4f6146b7662f9cabdea8a, type: 3}

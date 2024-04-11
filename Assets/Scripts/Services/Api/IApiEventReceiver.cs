@@ -6,6 +6,8 @@ namespace Services.Api
     {
         void OnLoadDataButtonClicked(string json);
         void OnAddResultButtonClicked(DatabaseRow databaseRow);
-        string ExportData();
+        void ExportData();
+        void ImportData();
+        void SetCombining(bool isOn);
     }
 }

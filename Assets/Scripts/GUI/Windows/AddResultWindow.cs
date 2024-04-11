@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using Artifacts;
 using Characters;
+using Gui.Artifacts;
 using Services.Api.DTO;
 using TMPro;
 using UnityEngine;
@@ -12,34 +14,25 @@ namespace Gui.Windows
     {
         private readonly Dictionary<int, ArtifactType> _artifactMap = new();
         
-        public TMP_Dropdown ArtifactDropdown;
+        public HeroSelectorWindow HeroSelectorWindow;
+        public ArtifactSelectorWindow ArtifactSelectorWindow;
+        public ArtifactElement ArtifactElement;
         public TMP_Dropdown ArtifactStarsDropdown;
-        public TMP_Dropdown HeroDropdown1;
-        public TMP_Dropdown HeroDropdown2;
-        public TMP_Dropdown HeroDropdown3;
-        public TMP_Dropdown HeroDropdown4;
-        public TMP_Dropdown HeroDropdown5;
-        public TMP_InputField PlaceInputField;
+        public List<HeroElement> HeroElements;
+        public TMP_InputField TotalWinsInputField;
 
         private HeroPreset _heroPreset;
         private ArtifactPreset _artifactPreset;
-        
-        public ArtifactType SelectedArtifact { get; private set; }
-        public float Place => float.Parse(PlaceInputField.text);
+
+        public ArtifactType SelectedArtifact => ArtifactElement.Data.Artifact.ArtifactType;
+        public float Place => float.Parse(TotalWinsInputField.text);
         public int StarCount => ArtifactStarsDropdown.value;
 
         public TeamData SelectedTeam
         {
             get
             {
-                var selectedHeroes = new List<HeroData>()
-                {
-                    _heroPreset.GetHero(HeroDropdown1.options[HeroDropdown1.value].text),
-                    _heroPreset.GetHero(HeroDropdown2.options[HeroDropdown2.value].text),
-                    _heroPreset.GetHero(HeroDropdown3.options[HeroDropdown3.value].text),
-                    _heroPreset.GetHero(HeroDropdown4.options[HeroDropdown4.value].text),
-                    _heroPreset.GetHero(HeroDropdown5.options[HeroDropdown5.value].text)
-                };
+                var selectedHeroes = HeroElements.Select(element => element.Data).ToList();
                 return new TeamData
                 {
                     AvgPlace = Place,
@@ -52,55 +45,35 @@ namespace Gui.Windows
         {
             _heroPreset = heroPreset;
             _artifactPreset = artifactPreset;
-            SetArtifactDropdownOptions(_artifactPreset.Artifacts);
-            SetHeroDropdownOptions(_heroPreset.Heroes);
+            HeroSelectorWindow.Init(heroPreset);
+            ArtifactSelectorWindow.Init(artifactPreset);
+            InitArtifactButton(_artifactPreset.Artifacts);
+            InitHeroButtons(_heroPreset.Heroes);
         }
 
-        public void SetArtifactDropdownOptions(List<Artifact> artifacts)
+        private void InitArtifactButton(IReadOnlyList<Artifact> artifacts)
         {
             _artifactMap.Clear();
             for (var i = 0; i < artifacts.Count; i++)
                 _artifactMap.Add(i, artifacts[i].ArtifactType);
             
-            ArtifactDropdown.ClearOptions();
-            ArtifactDropdown.AddOptions(CreateOptions());
-
-            List<TMP_Dropdown.OptionData> CreateOptions()
-            {
-                var options = new List<TMP_Dropdown.OptionData>();
-                foreach (var artifact in artifacts)
-                    options.Add(new TMP_Dropdown.OptionData(artifact.Name, artifact.Icon));
-
-                return options;
-            }
+            ArtifactElement.SetButtonAction(() => OnArtifactButtonClicked(ArtifactElement));
         }
-        
-        public void SetHeroDropdownOptions(List<HeroData> heroes)
+
+        private void InitHeroButtons(IReadOnlyList<HeroData> heroes)
         {
-            HeroDropdown1.ClearOptions();
-            HeroDropdown2.ClearOptions();
-            HeroDropdown3.ClearOptions();
-            HeroDropdown4.ClearOptions();
-            HeroDropdown5.ClearOptions();
-            
-            HeroDropdown1.AddOptions(CreateOptions());
-            HeroDropdown2.AddOptions(CreateOptions());
-            HeroDropdown3.AddOptions(CreateOptions());
-            HeroDropdown4.AddOptions(CreateOptions());
-            HeroDropdown5.AddOptions(CreateOptions());
-
-            List<TMP_Dropdown.OptionData> CreateOptions()
+            for (var i = 0; i < HeroElements.Count; i++)
             {
-                var options = new List<TMP_Dropdown.OptionData>();
-                foreach (var hero in heroes)
-                    options.Add(new TMP_Dropdown.OptionData(hero.Name, hero.Portrait));
-
-                return options;
+                var heroElement = HeroElements[i];
+                heroElement.SetContent(heroes[i]);
+                heroElement.SetButtonAction(() => OnHeroButtonClicked(heroElement));
             }
         }
         
-        [Preserve]
-        public void OnArtifactDropdownValueChanged(int index) => 
-            SelectedArtifact = _artifactMap[index];
+        private void OnHeroButtonClicked(HeroElement heroElement) => 
+            HeroSelectorWindow.SelectHero(heroElement.SetContent);
+        
+        private void OnArtifactButtonClicked(ArtifactElement artifactElement) => 
+            ArtifactSelectorWindow.SelectArtifact(artifactElement.SetContent);
     }
 }

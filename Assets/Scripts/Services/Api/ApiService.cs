@@ -5,6 +5,7 @@ using Characters;
 using Gui;
 using Infrastructure;
 using Services.Api.DTO;
+using Utils;
 
 namespace Services.Api
 {
@@ -17,6 +18,8 @@ namespace Services.Api
         private readonly ArtifactPreset _artifactPreset;
         private readonly MainCanvas _canvas;
 
+        private bool _combineResults = true;
+        
         public ApiService(
             Database database, 
             HeroPreset heroPreset,
@@ -151,7 +154,9 @@ namespace Services.Api
                 teamRankings.Add(teamData);
             }
             teamRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
-            return CombineByComp(teamRankings);
+            if (_combineResults)
+                teamRankings = CombineByComp(teamRankings);
+            return teamRankings;
         }
         
         public List<TeamData> GetTeamRankingsByArtifact(ArtifactType artifact, int? artifactStars = null)
@@ -179,7 +184,9 @@ namespace Services.Api
                 teamRankings.Add(teamData);
             }
             teamRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
-            return CombineByComp(teamRankings);
+            if (_combineResults)
+                teamRankings = CombineByComp(teamRankings);
+            return teamRankings;
         }
 
         private List<TeamData> CombineByComp(List<TeamData> rankings)
@@ -209,7 +216,6 @@ namespace Services.Api
                 };
                 combinedRankings.Add(combinedTeamData);
             }
-            combinedRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
             return combinedRankings;
         }
 
@@ -219,7 +225,25 @@ namespace Services.Api
         public void OnAddResultButtonClicked(DatabaseRow databaseRow) => 
             _database.AddRow(databaseRow);
         
-        public string ExportData() =>
-            _database.ToJson();
+        public void ExportData()
+        {
+            var data = _database.ToJson();
+            var bytes = System.Text.Encoding.UTF8.GetBytes(data);
+            DownloadHelper.DownloadFile(bytes, bytes.Length, "afk-journey-honor-duel-stats.json");
+        }
+        
+        public void ImportData()
+        {
+            FileUploaderHelper.UploadFile(json =>
+            {
+                _database.SetData(json);
+            });
+        }
+
+        public void SetCombining(bool isOn)
+        {
+            _combineResults = isOn;
+            InitUi();
+        }
     }
 }
