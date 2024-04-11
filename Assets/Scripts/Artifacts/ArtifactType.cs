@@ -1,0 +1,30 @@
+namespace Artifacts
+{
+    public enum ArtifactType
+    {
+        GoldenBlooms,
+        GruglinMask,
+        ObsidianEarring,
+        Pyrocatalyst,
+        CrimsonGem,
+        ImmortalFlame,
+        PureNectar,
+        SwiftyBook,
+        IllusionCenser,
+        ArtOfRuling,
+        FragrantBag,
+        CrystalCell,
+        OracleSculpture,
+        LuckyCage,
+        RelicShard,
+        SnowHerb,
+        DawnAntlers,
+        InspiringHorn,
+        ProudGreaves,
+        GlowingBlossom,
+        CrystalDew,
+        RockNecklace,
+        LitheLarkspur,
+        TranquilFlask,
+    }
+}

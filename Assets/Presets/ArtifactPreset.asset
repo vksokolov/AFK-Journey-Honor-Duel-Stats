@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4badb42bd04cf0a319395ffe0beed7, type: 3}
+  m_Name: ArtifactPreset
+  m_EditorClassIdentifier: 
+  MissingSprite: {fileID: 21300000, guid: c1a7c5ec5c992dc4c8572ffc2beeecee, type: 3}
+  Artifacts:
+  - Name: Golden Blooms
+    ArtifactType: 0
+    Description: 
+    Icon: {fileID: 21300000, guid: 51e1f784f73abd546ab07e90558e2592, type: 3}
+  - Name: Gruglin Mask
+    ArtifactType: 1
+    Description: "Reduces all enemy heroes\u2019 current HP by 50% when the battle
+      starts. The lost HP will return to enemies in the next 20s.  Reach 6 Artifact
+      XP to unlock. You can then select a new passive effect.  Reach 42 Artifact
+      XP to unlock. Extends the interval of returning lost HP to 30s."
+    Icon: {fileID: 21300000, guid: c1a7c5ec5c992dc4c8572ffc2beeecee, type: 3}
+  - Name: Obsidian Earring
+    ArtifactType: 2
+    Description: "Deals true damage to all enemies once every 12s. The damage equals
+      3.5% of all allied Graveborn heroes\u2019 actual damage taken within 12s. Each
+      deployed Legendary Graveborn hero increases the damage multiplier by 0.3%.
+      Each deployed Mythic Graveborn hero increases the damage multiplier by 0.4% 
+      Reach 6 Artifact XP to unlock. You can then select a new passive effect.  Reach
+      42 Artifact XP to unlock. The cooldown is reduced to 6s."
+    Icon: {fileID: 21300000, guid: 81ab81d6fc372b443b3e6dba1a9aba1b, type: 3}
+  - Name: Pyrocatalyst
+    ArtifactType: 3
+    Description: "Grants the allied Mirael 10% ATK, gaining an extra 150 Energy after
+      defeating an enemy. Her Ultimate deals true damage and extends the damage range
+      to 5-tile-wide. The enemy at the edge of the range takes only 50% damage. 
+      Reach 6 Artifact XP to unlock. You can then select a new passive effect.  Reach
+      42 Artifact XP to unlock. Enhances Mirael\u2019s Ultimate, allowing her to
+      knock enemies with less than 15% out of the battlefield, instantly defeating
+      them."
+    Icon: {fileID: 21300000, guid: 4cd7848988fd575418ecff2bdffad3d3, type: 3}
+  - Name: Crimson Gem
+    ArtifactType: 4
+    Description: "Surrounds all allied heroes with flame when a battle starts, dealing
+      true damage to adjacent enemy heroes equal to 2.5% of their max HP per second.
+      The same target\u2019s taken damage drops to 35% when hit multiple times by
+      this skill in a second.  Reach 6 Artifact XP to unlock. You can then select
+      a new passive effect.  Reach 42 Artifact XP to unlock. If the same enemy takes
+      this damage multiple times within 1s, subsequent damage will no longer be reduced."
+    Icon: {fileID: 21300000, guid: 9e8d87dd938dd64468301cf2d4db2aa9, type: 3}
+  - Name: Immortal Flame
+    ArtifactType: 5
+    Description: 
+    Icon: {fileID: 21300000, guid: 70201d317f383694c839301e1fc3fa96, type: 3}
+  - Name: Pure Nectar
+    ArtifactType: 6
+    Description: 
+    Icon: {fileID: 21300000, guid: c1a7c5ec5c992dc4c8572ffc2beeecee, type: 3}
+  - Name: Swifty Book
+    ArtifactType: 7
+    Description: 
+    Icon: {fileID: 21300000, guid: c1a7c5ec5c992dc4c8572ffc2beeecee, type: 3}
+  - Name: Illusion Censer
+    ArtifactType: 8
+    Description: "Creates magic fog to cover the battlefield, reducing all the heroes\u2019
+      damage by 50% and making them lose 2% of max HP per second.  Reach 6 Articaft
+      XP to unlock. You can then select a new passive effect.  Reach 42 Artifact
+      XP to unlock. Magic fog reduces the enemy heroes\u2019 energy recovery by 20%."
+    Icon: {fileID: 21300000, guid: 8c0f2db8a8ffe9549986660b83598078, type: 3}
+  - Name: Art of Ruling
+    ArtifactType: 9
+    Description: "When a battle starts, the frontmost allied hero becomes the \u201Cvanguard\u201D,
+      gaining 30% Basic Stats bonus and 70 Energy every 2s. When your vanguard hero
+      is defeated, the remaining heroes will lose 5% Basic Stats.  Reach 6 Artifact
+      XP to unlock. You can then select a new passive effect.  Reach 42 Artifact
+      XP to unlock. Increases other allied heroes\u2019 Haste by 15 while the vanguard
+      hero is alive."
+    Icon: {fileID: 21300000, guid: 71a3eb039a2fa6f449179fc40e9f6237, type: 3}
+  - Name: Fragrant Bag
+    ArtifactType: 10
+    Description: 
+    Icon: {fileID: 0}
+  - Name: Crystal Cell
+    ArtifactType: 11
+    Description: 
+    Icon: {fileID: 0}
+  - Name: Oracle Sculpture
+    ArtifactType: 12
+    Description: 
+    Icon: {fileID: 21300000, guid: eb6e029d9efe6574eb17617705418d5f, type: 3}
+  - Name: Lucky Cage
+    ArtifactType: 13
+    Description: 
+    Icon: {fileID: 0}
+  - Name: Relic Shard
+    ArtifactType: 14
+    Description: 
+    Icon: {fileID: 0}
+  - Name: Snow Herb
+    ArtifactType: 15
+    Description: 
+    Icon: {fileID: 0}
+  - Name: Dawn Antlers
+    ArtifactType: 16
+    Description: 
+    Icon: {fileID: 21300000, guid: dcaabebd03c5ddc499431329bbfabf57, type: 3}
+  - Name: Inspiring Horn
+    ArtifactType: 17
+    Description: 
+    Icon: {fileID: 0}
+  - Name: Proud Greaves
+    ArtifactType: 18
+    Description: 
+    Icon: {fileID: 21300000, guid: c44c9be1ac2e4d14ca8684271dc4e59b, type: 3}
+  - Name: Glowing Blossom
+    ArtifactType: 19
+    Description: 
+    Icon: {fileID: 0}
+  - Name: Crystal Dew
+    ArtifactType: 20
+    Description: 
+    Icon: {fileID: 21300000, guid: 622d5bd03268e874ca742ef4abd9fa84, type: 3}
+  - Name: Rock Necklace
+    ArtifactType: 21
+    Description: 
+    Icon: {fileID: 21300000, guid: 570481b0ed65d034cbf607bfa125555f, type: 3}
+  - Name: Lithe Larkspur
+    ArtifactType: 22
+    Description: 
+    Icon: {fileID: 21300000, guid: d1946f32d8b69bb489daa34eca26fff4, type: 3}
+  - Name: Tranquil Flask
+    ArtifactType: 23
+    Description: 
+    Icon: {fileID: 0}

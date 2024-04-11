@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Factions
 {
-    [CreateAssetMenu(fileName = "FactionPreset", menuName = "Presets/Faction Preset")]
+    [CreateAssetMenu(fileName = nameof(FactionPreset), menuName = "Presets/" + nameof(FactionPreset))]
     public class FactionPreset : ScriptableObject
     {
         public List<FactionData> Factions;
