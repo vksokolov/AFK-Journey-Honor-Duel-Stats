@@ -151,7 +151,7 @@ namespace Services.Api
                 teamRankings.Add(teamData);
             }
             teamRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
-            return teamRankings;
+            return CombineByComp(teamRankings);
         }
         
         public List<TeamData> GetTeamRankingsByArtifact(ArtifactType artifact, int? artifactStars = null)
@@ -179,7 +179,38 @@ namespace Services.Api
                 teamRankings.Add(teamData);
             }
             teamRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
-            return teamRankings;
+            return CombineByComp(teamRankings);
+        }
+
+        private List<TeamData> CombineByComp(List<TeamData> rankings)
+        {
+            var combinedRankings = new List<TeamData>();
+            var compToRankings = new Dictionary<long, List<TeamData>>();
+            foreach (var teamData in rankings)
+            {
+                var comp = teamData.ToBitMask();
+                if (!compToRankings.ContainsKey(comp))
+                    compToRankings[comp] = new List<TeamData>();
+                compToRankings[comp].Add(teamData);
+            }
+
+            foreach (var comp in compToRankings.Keys)
+            {
+                var avgPlace = 0f;
+                foreach (var teamData in compToRankings[comp])
+                    avgPlace += teamData.AvgPlace;
+                avgPlace /= compToRankings[comp].Count;
+                
+                var combinedTeamData = new TeamData
+                {
+                    AvgPlace = avgPlace,
+                    Heroes = compToRankings[comp][0].Heroes,
+                    Artifact = compToRankings[comp][0].Artifact
+                };
+                combinedRankings.Add(combinedTeamData);
+            }
+            combinedRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
+            return combinedRankings;
         }
 
         public void OnLoadDataButtonClicked(string json) => 
