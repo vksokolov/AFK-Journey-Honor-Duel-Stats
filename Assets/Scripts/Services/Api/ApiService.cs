@@ -32,6 +32,7 @@ namespace Services.Api
             _artifactPreset = artifactPreset;
             _rowsByArtifact = new Dictionary<ArtifactType, List<int>>();
             
+            _canvas.TeamTable.SetDeleteButtonAction(DeleteTeamData);
             canvas.Init(this, _artifactPreset, _heroPreset);
             _database.OnDataChanged += OnDatabaseChanged;
         }
@@ -39,6 +40,18 @@ namespace Services.Api
         public void Init(string jsonData)
         {
             _database.SetData(jsonData);
+        }
+
+        private void DeleteTeamData(TeamData teamData)
+        {
+            var databaseRow = new DatabaseRow
+            {
+                Artifact = teamData.Artifact.Artifact.ArtifactType,
+                AvgPlace = teamData.AvgPlace,
+                StarCount = teamData.Artifact.StarCount,
+                TeamComp = teamData.ToBitMask()
+            };
+            _database.RemoveRow(databaseRow);
         }
 
         private void OnDatabaseChanged()
@@ -93,6 +106,7 @@ namespace Services.Api
         {
             _canvas.TeamTable.HideAll();
             _canvas.TeamTable.SetElements(GetAllTeamRankings());
+            _canvas.TeamTable.ShowDeleteButtons(!_combineResults);
 
             var artifactDataList = GetArtifactRankings();
             _canvas.ArtifactTable.SetElements(artifactDataList);

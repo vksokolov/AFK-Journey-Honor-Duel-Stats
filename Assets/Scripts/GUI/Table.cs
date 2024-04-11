@@ -8,32 +8,36 @@ namespace Gui
         public Transform ElementRoot;
         public TElement Prefab;
         
-        private List<TElement> _elements = new List<TElement>();
+        protected List<TElement> Elements = new List<TElement>();
 
         public void SetElements(List<TData> elements)
         {
             for (var i = 0; i < elements.Count; i++)
             {
-                if (i < _elements.Count)
+                if (i < Elements.Count)
                 {
-                    _elements[i].SetContent(elements[i]);
-                    _elements[i].gameObject.SetActive(true);
+                    Elements[i].SetContent(elements[i]);
+                    Elements[i].gameObject.SetActive(true);
                 }
                 else
                 {
                     var element = Instantiate(Prefab, ElementRoot);
                     element.SetContent(elements[i]);
-                    _elements.Add(element);
+                    Elements.Add(element);
                 }
             }
             
-            for (var i = elements.Count; i < _elements.Count; i++) 
-                _elements[i].gameObject.SetActive(false);
+            for (var i = elements.Count; i < Elements.Count; i++) 
+                Elements[i].gameObject.SetActive(false);
+            
+            OnElementsUpdated();
         }
+
+        protected virtual void OnElementsUpdated() { }
 
         public void HideAll()
         {
-            foreach (var element in _elements)
+            foreach (var element in Elements)
                 element.gameObject.SetActive(false);
         }
     }

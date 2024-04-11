@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Artifacts;
 using Characters;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Services.Api.DTO
     [Serializable]
     public class Database
     {
+        private const float _epsilon = .001f;
         public event Action OnDataChanged;
         public List<DatabaseRow> Rows = new();
 
@@ -34,6 +36,13 @@ namespace Services.Api.DTO
         public void AddRow(DatabaseRow row)
         {
             Rows.Add(row);
+            OnDataChanged?.Invoke();
+        }
+        
+        public void RemoveRow(DatabaseRow row)
+        {
+            var foundRow = Rows.FirstOrDefault(r => r.StarCount == row.StarCount && r.Artifact == row.Artifact && Math.Abs(r.AvgPlace - row.AvgPlace) < _epsilon && r.TeamComp == row.TeamComp);
+            Rows.Remove(foundRow);
             OnDataChanged?.Invoke();
         }
     }
