@@ -338,6 +338,44 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252110131252225074, guid: 4f272ba639a81ec48b7738dd0dcee06e, type: 3}
+      propertyPath: m_Text
+      value: '{"Rows":[
+
+        {"AvgPlace":4,"Artifact":3,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":3,"Artifact":3,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":1,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":2,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":4,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":5,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":6,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":7,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":8,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":9,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":10,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":11,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":12,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":13,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":14,"StarCount":2,"TeamComp":61},
+
+        {"AvgPlace":4.269999980926514,"Artifact":15,"StarCount":2,"TeamComp":61}
+
+        ]}'
+      objectReference: {fileID: 0}
     - target: {fileID: 295299301201492083, guid: 4f272ba639a81ec48b7738dd0dcee06e, type: 3}
       propertyPath: m_Name
       value: CompTable
