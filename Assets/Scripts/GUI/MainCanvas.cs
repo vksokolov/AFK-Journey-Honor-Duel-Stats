@@ -66,21 +66,19 @@ namespace Gui
         }
         
         [Preserve]
-        public void OnExportJsonButtonClicked()
-        {
+        public void OnExportJsonButtonClicked() => 
             _apiEventReceiver.ExportData();
-        }
-        
+
         [Preserve]
-        public void OnImportJsonButtonClicked()
-        {
+        public void OnImportJsonButtonClicked() => 
             _apiEventReceiver.ImportData();
-        }
-        
+
         [Preserve]
-        public void OnCombineSameCompsToggleSwitched(bool isOn)
-        {
+        public void OnCombineSameCompsToggleSwitched(bool isOn) => 
             _apiEventReceiver.SetCombining(isOn);
-        }
+
+        [Preserve]
+        public void OnDeleteAllDataButtonClicked() => 
+            _apiEventReceiver.OnDeleteAllDataButtonClicked();
     }
 }

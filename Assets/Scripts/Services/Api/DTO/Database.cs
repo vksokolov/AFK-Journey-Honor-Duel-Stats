@@ -29,9 +29,6 @@ namespace Services.Api.DTO
             Rows = data.Rows;
         }
 
-        public static Database FromJson(string json) => 
-            JsonUtility.FromJson<Database>(json);
-
         public string ToJson() => 
             JsonConvert.SerializeObject(this);
 
@@ -45,6 +42,12 @@ namespace Services.Api.DTO
         {
             var foundRow = Rows.FirstOrDefault(r => r.StarCount == row.StarCount && r.Artifact == row.Artifact && Math.Abs(r.AvgPlace - row.AvgPlace) < _epsilon && r.TeamComp == row.TeamComp);
             Rows.Remove(foundRow);
+            OnDataChanged?.Invoke();
+        }
+
+        public void Clear()
+        {
+            Rows.Clear();
             OnDataChanged?.Invoke();
         }
     }
