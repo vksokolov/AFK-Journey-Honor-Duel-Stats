@@ -3,6 +3,7 @@ using System.Linq;
 using Artifacts;
 using Characters;
 using Gui.Artifacts;
+using Gui.Filters;
 using Gui.Windows;
 using Services.Api;
 using Services.Api.DTO;
@@ -14,6 +15,7 @@ namespace Gui
     public class MainCanvas : MonoBehaviour
     {
         public ArtifactTable ArtifactTable;
+        public FilterTable FilterTable;
         public TeamTable TeamTable;
         [Space]
         public JsonWindow JsonWindow;

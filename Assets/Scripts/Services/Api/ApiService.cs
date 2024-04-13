@@ -3,7 +3,9 @@ using System.Linq;
 using Artifacts;
 using Characters;
 using Gui;
+using Gui.Filters;
 using Infrastructure;
+using Scripts.Filters;
 using Services.Api.DTO;
 using Utils;
 
@@ -17,7 +19,9 @@ namespace Services.Api
         private readonly HeroPreset _heroPreset;
         private readonly ArtifactPreset _artifactPreset;
         private readonly MainCanvas _canvas;
-
+        private readonly SaveDataHelper _saveDataHelper;
+        
+        private FilterModel _filterModel;
         private bool _combineResults = true;
         
         public ApiService(
@@ -31,10 +35,26 @@ namespace Services.Api
             _canvas = canvas;
             _artifactPreset = artifactPreset;
             _rowsByArtifact = new Dictionary<ArtifactType, List<int>>();
+            _saveDataHelper = new SaveDataHelper(_canvas.JsonWindow);
             
             _canvas.TeamTable.SetDeleteButtonAction(DeleteTeamData);
             canvas.Init(this, _artifactPreset, _heroPreset);
             _database.OnDataChanged += OnDatabaseChanged;
+            _filterModel = new FilterModel();
+            _filterModel.AddFilterSource(_canvas.TeamTable);
+            _filterModel.AddFilterSource(_canvas.ArtifactTable);
+            _filterModel.OnFilterChanged += OnFilterChanged;
+            
+            _canvas.TeamTable.SetFilterEventReceiver(_filterModel);
+            _canvas.ArtifactTable.SetFilterEventReceiver(_filterModel);
+            _canvas.FilterTable.OnFilterRemoved += _filterModel.RemoveFilter;
+        }
+
+        private void OnFilterChanged()
+        {
+            var filters = _filterModel.GetFilters();
+            _canvas.FilterTable.SetElements(filters);
+            InitUi();
         }
 
         public void Init(string jsonData)
@@ -154,6 +174,9 @@ namespace Services.Api
             var teamRankings = new List<TeamData>();
             foreach (var row in _database.Rows)
             {
+                if (!MatchesFilter(row))
+                    continue;
+                
                 var teamData = new TeamData
                 {
                     AvgPlace = row.AvgPlace,
@@ -182,9 +205,15 @@ namespace Services.Api
             foreach (var rowIndex in _rowsByArtifact[artifact])
             {
                 var row = _database.Rows[rowIndex];
+                
+                // Check stars
                 if (artifactStars.HasValue && row.StarCount != artifactStars)
                     continue;
                 
+                // Check filter
+                if (!MatchesFilter(row))
+                    continue;
+
                 var teamData = new TeamData
                 {
                     AvgPlace = row.AvgPlace,
@@ -230,6 +259,7 @@ namespace Services.Api
                 };
                 combinedRankings.Add(combinedTeamData);
             }
+            combinedRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
             return combinedRankings;
         }
 
@@ -239,25 +269,29 @@ namespace Services.Api
         public void OnAddResultButtonClicked(DatabaseRow databaseRow) => 
             _database.AddRow(databaseRow);
         
-        public void ExportData()
-        {
-            var data = _database.ToJson();
-            var bytes = System.Text.Encoding.UTF8.GetBytes(data);
-            DownloadHelper.DownloadFile(bytes, bytes.Length, "afk-journey-honor-duel-stats.json");
-        }
-        
-        public void ImportData()
-        {
-            FileUploaderHelper.UploadFile(json =>
-            {
-                _database.SetData(json);
-            });
-        }
+        public void ExportData() => 
+            _saveDataHelper.ExportData(_database.ToJson());
+
+        public void ImportData() => 
+            _saveDataHelper.ImportData(_database.SetData);
 
         public void SetCombining(bool isOn)
         {
             _combineResults = isOn;
             InitUi();
+        }
+        
+        private bool MatchesFilter(DatabaseRow row)
+        {
+            if (_filterModel.ArtifactFilter != null && !_filterModel.ArtifactFilter.Check(row.Artifact))
+                return false;
+            
+            var team = _heroPreset.GetHeroes(row.TeamComp);
+            if (_filterModel.HeroFilterBitmask != 0 
+                && _filterModel.HeroFilters.Any(heroFilter => !team.Contains(heroFilter.Filter)))
+                return false;
+
+            return true;
         }
     }
 }

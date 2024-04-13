@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Scripts.Filters;
 using UnityEngine;
 
 namespace Gui
@@ -8,9 +9,9 @@ namespace Gui
         public Transform ElementRoot;
         public TElement Prefab;
         
-        protected List<TElement> Elements = new List<TElement>();
+        [SerializeField] protected List<TElement> Elements = new List<TElement>();
 
-        public void SetElements(List<TData> elements)
+        public virtual void SetElements(List<TData> elements)
         {
             for (var i = 0; i < elements.Count; i++)
             {

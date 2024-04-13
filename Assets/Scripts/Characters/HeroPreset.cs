@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Services.Api.DTO;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,14 +8,16 @@ namespace Characters
     public class HeroPreset : ScriptableObject
     {
         private Dictionary<long, HeroData> _heroesByBitMaskId;
-        
+        private HashSet<HeroData> _heroes;
+
         [FormerlySerializedAs("Characters")] public List<HeroData> Heroes;
 
-        public List<HeroData> GetHeroes(long teamComp)
+        public HashSet<HeroData> GetHeroes(long teamComp)
         {
-            _heroesByBitMaskId ??= CreateHeroBitMaskMap(Heroes);
+            _heroes ??= new HashSet<HeroData>(Heroes);
+            _heroesByBitMaskId ??= CreateHeroBitMaskMap(_heroes);
             
-            var heroes = new List<HeroData>();
+            var heroes = new HashSet<HeroData>();
             var remainingTeam = teamComp;
             while (remainingTeam > 0)
             {
@@ -28,7 +29,7 @@ namespace Characters
             return heroes;
         }
 
-        private Dictionary<long, HeroData> CreateHeroBitMaskMap(List<HeroData> characters)
+        private Dictionary<long, HeroData> CreateHeroBitMaskMap(HashSet<HeroData> characters)
         {
             var heroesByBitMaskId = new Dictionary<long, HeroData>();
             foreach (var hero in characters)

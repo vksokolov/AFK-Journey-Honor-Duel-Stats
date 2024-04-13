@@ -7,7 +7,7 @@ namespace Services.Api.DTO
     {
         public float AvgPlace;
         public ArtifactData Artifact;
-        public List<HeroData> Heroes;
+        public HashSet<HeroData> Heroes;
         
         public long ToBitMask()
         {

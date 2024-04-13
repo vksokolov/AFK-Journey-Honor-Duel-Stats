@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Scripts.Filters;
 using Services.Api.DTO;
 using TMPro;
 using UnityEngine.UI;

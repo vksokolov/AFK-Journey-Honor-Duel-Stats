@@ -6,7 +6,6 @@ using Gui.Artifacts;
 using Services.Api.DTO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace Gui.Windows
 {
@@ -32,7 +31,7 @@ namespace Gui.Windows
         {
             get
             {
-                var selectedHeroes = HeroElements.Select(element => element.Data).ToList();
+                var selectedHeroes = HeroElements.Select(element => element.Data).ToHashSet();
                 return new TeamData
                 {
                     AvgPlace = Place,

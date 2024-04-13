@@ -3,7 +3,7 @@ using Services.Api.DTO;
 
 namespace Gui
 {
-    public class TeamTable : Table<TeamTableRow, TeamData>
+    public class TeamTable : FilteringTable<TeamTableRow, TeamData>
     {
         private Action<TeamData> _deleteAction;
         
@@ -20,6 +20,7 @@ namespace Gui
 
         protected override void OnElementsUpdated()
         {
+            base.OnElementsUpdated();
             foreach (var tableRow in Elements)
                 tableRow.SetDeleteButtonAction(_deleteAction);
         }

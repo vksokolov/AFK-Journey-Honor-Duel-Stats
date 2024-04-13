@@ -1,4 +1,5 @@
 using Artifacts;
+using Scripts.Filters;
 
 namespace Services.Api.DTO
 {
@@ -7,5 +8,8 @@ namespace Services.Api.DTO
         public Artifact Artifact;
         public int StarCount;
         public float AvgPlace;
+        
+        public FilterData ToFilterData() => 
+            new ArtifactFilter() {Filter = this};
     }
 }
