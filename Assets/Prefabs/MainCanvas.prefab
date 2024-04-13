@@ -1533,6 +1533,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7014294396042349183, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014294396042349183, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014294396042349183, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4256831988473542263}
+    - target: {fileID: 7014294396042349183, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014294396042349183, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDeleteAllDataButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014294396042349183, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gui.MainCanvas, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014294396042349183, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8535411230725463967, guid: c166d2380d4071344bf920af73dbeb05, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

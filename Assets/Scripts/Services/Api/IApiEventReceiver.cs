@@ -9,5 +9,6 @@ namespace Services.Api
         void ExportData();
         void ImportData();
         void SetCombining(bool isOn);
+        void OnDeleteAllDataButtonClicked();
     }
 }

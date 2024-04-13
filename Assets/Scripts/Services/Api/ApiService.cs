@@ -281,6 +281,9 @@ namespace Services.Api
             InitUi();
         }
         
+        public void OnDeleteAllDataButtonClicked() => 
+            _database.Clear();
+
         private bool MatchesFilter(DatabaseRow row)
         {
             if (_filterModel.ArtifactFilter != null && !_filterModel.ArtifactFilter.Check(row.Artifact))

@@ -3,6 +3,7 @@ using Artifacts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Services.Api.DTO;
+using UnityEngine;
 
 namespace Utils.Converters
 {
