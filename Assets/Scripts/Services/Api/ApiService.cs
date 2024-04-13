@@ -227,8 +227,6 @@ namespace Services.Api
                 teamRankings.Add(teamData);
             }
             teamRankings.Sort((x,y) => y.AvgPlace.CompareTo(x.AvgPlace));
-            if (_combineResults)
-                teamRankings = CombineByComp(teamRankings);
             return teamRankings;
         }
 
