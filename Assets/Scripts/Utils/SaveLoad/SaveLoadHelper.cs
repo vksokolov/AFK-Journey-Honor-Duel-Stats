@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace Utils
 {
-    public class SaveDataHelper
+    public class SaveLoadHelper
     {
         private static string _saveFilePath = Application.persistentDataPath + "/afk-journey-honor-duel-stats.json";
         private readonly JsonWindow _jsonWindow;
         
-        public SaveDataHelper(JsonWindow jsonWindow)
+        public SaveLoadHelper(JsonWindow jsonWindow)
         {
             _jsonWindow = jsonWindow;
         }

@@ -19,7 +19,7 @@ namespace Services.Api
         private readonly HeroPreset _heroPreset;
         private readonly ArtifactPreset _artifactPreset;
         private readonly MainCanvas _canvas;
-        private readonly SaveDataHelper _saveDataHelper;
+        private readonly SaveLoadHelper _saveLoadHelper;
         
         private FilterModel _filterModel;
         private bool _combineResults = true;
@@ -35,7 +35,7 @@ namespace Services.Api
             _canvas = canvas;
             _artifactPreset = artifactPreset;
             _rowsByArtifact = new Dictionary<ArtifactType, List<int>>();
-            _saveDataHelper = new SaveDataHelper(_canvas.JsonWindow);
+            _saveLoadHelper = new SaveLoadHelper(_canvas.JsonWindow);
             
             _canvas.TeamTable.SetDeleteButtonAction(DeleteTeamData);
             canvas.Init(this, _artifactPreset, _heroPreset);
@@ -270,10 +270,10 @@ namespace Services.Api
             _database.AddRow(databaseRow);
         
         public void ExportData() => 
-            _saveDataHelper.ExportData(_database.ToJson());
+            _saveLoadHelper.ExportData(_database.ToJson());
 
         public void ImportData() => 
-            _saveDataHelper.ImportData(_database.SetData);
+            _saveLoadHelper.ImportData(_database.SetData);
 
         public void SetCombining(bool isOn)
         {

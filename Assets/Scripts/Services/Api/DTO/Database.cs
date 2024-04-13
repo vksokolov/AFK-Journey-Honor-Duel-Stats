@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Artifacts;
 using Characters;
+using Newtonsoft.Json;
 using UnityEngine;
+using Utils.Converters;
 
 namespace Services.Api.DTO
 {
@@ -23,7 +25,7 @@ namespace Services.Api.DTO
 
         private void ParseJson(string dataJson)
         {
-            var data = JsonUtility.FromJson<Database>(dataJson);
+            var data = JsonConvert.DeserializeObject<Database>(dataJson);
             Rows = data.Rows;
         }
 
@@ -31,7 +33,7 @@ namespace Services.Api.DTO
             JsonUtility.FromJson<Database>(json);
 
         public string ToJson() => 
-            JsonUtility.ToJson(this);
+            JsonConvert.SerializeObject(this);
 
         public void AddRow(DatabaseRow row)
         {
@@ -48,11 +50,12 @@ namespace Services.Api.DTO
     }
 
     [Serializable]
+    [JsonConverter(typeof(DatabaseRowConverter))]
     public class DatabaseRow
     {
-        public float AvgPlace;
-        public ArtifactType Artifact;
-        public int StarCount;
-        public long TeamComp;
+        [JsonProperty("p")] public float AvgPlace;
+        [JsonProperty("a")] public ArtifactType Artifact;
+        [JsonProperty("s")] public int StarCount;
+        [JsonProperty("t")] public long TeamComp;
     }
 }
