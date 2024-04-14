@@ -268,7 +268,7 @@ namespace Services.Api
             _database.AddRow(databaseRow);
         
         public void ExportData() => 
-            _saveLoadHelper.ExportData(_database.ToJson());
+            _saveLoadHelper.ExportData(_database.ToExportString());
 
         public void ImportData() => 
             _saveLoadHelper.ImportData(_database.SetData);

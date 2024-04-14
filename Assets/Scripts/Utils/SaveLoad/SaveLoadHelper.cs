@@ -29,13 +29,13 @@ namespace Utils
 #endif
         }
 
-        public void ExportData(string json)
+        public void ExportData(string exportString)
         {
 #if DEBUG_OR_PC
-            _jsonWindow.JsonInputField.text = json;
+            _jsonWindow.JsonInputField.text = exportString;
             _jsonWindow.gameObject.SetActive(true);
 #else
-            DownloadHelper.ExportData(json);
+            DownloadHelper.ExportData(exportString);
 #endif
         }
     }
